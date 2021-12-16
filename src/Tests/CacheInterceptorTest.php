@@ -16,6 +16,7 @@ use Psr\Http\Message\ServerRequestInterface;
 use Spiral\Attributes\AttributeReader;
 use Spiral\Attributes\ReaderInterface;
 use Spiral\Boot\BootloadManager;
+use Spiral\Boot\Bootloader\CoreBootloader;
 use Spiral\Core\Container;
 use Spiral\Core\Core;
 use Spiral\Core\CoreInterface;
@@ -28,13 +29,12 @@ use Symfony\Contracts\Cache\TagAwareCacheInterface;
  * @internal
  * @covers \Ruvents\SpiralCache\Domain\CacheInterceptor
  */
-class CacheInterceptorTest extends TestCase
+class CacheInterceptorTest extends CacheTestCase
 {
-    private ?Container $container = null;
-
     protected function setUp(): void
     {
-        $this->container = new Container();
+        parent::setUp();
+
         $this->container->bindSingleton(
             ResponseNormalizer::class,
             new ResponseNormalizer(new Psr17Factory(), new Psr17Factory())
@@ -53,7 +53,7 @@ class CacheInterceptorTest extends TestCase
             ServerRequestInterface::class,
             (new Psr17Factory())->createServerRequest('GET', '/test')
         );
-        (new BootloadManager($this->container))->bootload([CacheBootloader::class]);
+        (new BootloadManager($this->container))->bootload([CoreBootloader::class, CacheBootloader::class]);
         $this->container->bindSingleton(ReaderInterface::class, new AttributeReader());
     }
 

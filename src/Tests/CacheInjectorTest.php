@@ -13,6 +13,7 @@ use PHPUnit\Framework\TestCase;
 use Psr\Cache\CacheItemPoolInterface;
 use Psr\SimpleCache\CacheInterface;
 use Spiral\Boot\BootloadManager;
+use Spiral\Boot\Bootloader\CoreBootloader;
 use Spiral\Core\Container;
 use Symfony\Component\Cache\Adapter\ArrayAdapter;
 use Symfony\Component\Cache\Adapter\NullAdapter;
@@ -23,13 +24,12 @@ use Symfony\Contracts\Cache\TagAwareCacheInterface;
  * @internal
  * @covers \Ruvents\SpiralCache\Container\CacheInjector
  */
-final class CacheInjectorTest extends TestCase
+final class CacheInjectorTest extends CacheTestCase
 {
-    private ?Container $container = null;
-
     protected function setUp(): void
     {
-        $this->container = new Container();
+        parent::setUp();
+
         $this->container->bindSingleton(
             CacheConfig::class,
             new CacheConfig([
@@ -39,7 +39,7 @@ final class CacheInjectorTest extends TestCase
                 ],
             ])
         );
-        (new BootloadManager($this->container))->bootload([CacheBootloader::class]);
+        (new BootloadManager($this->container))->bootload([CoreBootloader::class, CacheBootloader::class]);
     }
 
     public function testInjection(): void

@@ -4,26 +4,24 @@ declare(strict_types=1);
 
 namespace Ruvents\SpiralCache\Tests;
 
-use Ruvents\SpiralCache\Bootloader\CacheBootloader;
-use Ruvents\SpiralCache\Config\CacheConfig;
-use PHPUnit\Framework\TestCase;
 use Psr\Cache\CacheItemPoolInterface;
 use Psr\SimpleCache\CacheInterface;
+use Ruvents\SpiralCache\Bootloader\CacheBootloader;
+use Ruvents\SpiralCache\Config\CacheConfig;
 use Spiral\Boot\BootloadManager;
-use Spiral\Core\Container;
+use Spiral\Boot\Bootloader\CoreBootloader;
 use Symfony\Component\Cache\Adapter\NullAdapter;
 
 /**
  * @internal
  * @covers \Ruvents\SpiralCache\Container\CacheInjector
  */
-final class CacheBootloaderTest extends TestCase
+final class CacheBootloaderTest extends CacheTestCase
 {
-    private ?Container $container = null;
-
     protected function setUp(): void
     {
-        $this->container = new Container();
+        parent::setUp();
+
         $this->container->bindSingleton(
             CacheConfig::class,
             new CacheConfig([
@@ -32,7 +30,7 @@ final class CacheBootloaderTest extends TestCase
                 ],
             ])
         );
-        (new BootloadManager($this->container))->bootload([CacheBootloader::class]);
+        (new BootloadManager($this->container))->bootload([CoreBootloader::class, CacheBootloader::class]);
     }
 
     public function testGetCacheItemPoolInterface(): void

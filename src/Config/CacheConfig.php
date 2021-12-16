@@ -8,7 +8,6 @@ use Psr\Cache\CacheItemPoolInterface;
 use Ruvents\SpiralCache\Exception\NoDefaultPoolException;
 use Ruvents\SpiralCache\Exception\PoolDoesNotExistException;
 use Spiral\Core\InjectableConfig;
-use Webmozart\Assert\Assert;
 
 final class CacheConfig extends InjectableConfig
 {
@@ -25,7 +24,15 @@ final class CacheConfig extends InjectableConfig
     public function __construct(array $config)
     {
         $config['pools'] = $config['pools'] ?? [];
-        Assert::allIsInstanceOf($config['pools'], CacheItemPoolInterface::class);
+
+        foreach ($config['pools'] as $poolName => $pool) {
+            if (false === $pool instanceof CacheItemPoolInterface) {
+                throw new \InvalidArgumentException(
+                    "Cache pool \"${poolName}\" must be an instance of Psr\Cache\CacheItemPoolInterface"
+                );
+            }
+        }
+
         $config['default'] = $config['default'] ?? self::DEFAULT_POOL;
         $config['controllerAdapter'] = $config['controllerAdapter'] ?? $config['default'];
 

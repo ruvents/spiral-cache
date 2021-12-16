@@ -28,11 +28,12 @@ final class CacheBootloader extends Bootloader
         $console->addCommand(CacheResetCommand::class);
         $container->bindInjector(CacheItemPoolInterface::class, CacheInjector::class);
 
+        // PSR-16 injection if installed.
         if (interface_exists(CacheInterface::class)) {
             $container->bindInjector(CacheInterface::class, CacheInjector::class);
         }
 
-        // Symfony.
+        // symfony/cache injection if installed.
         if (interface_exists(SymfonyCacheInterface::class)) {
             $container->bindInjector(SymfonyCacheInterface::class, CacheInjector::class);
         }
@@ -41,7 +42,7 @@ final class CacheBootloader extends Bootloader
             $container->bindInjector(TagAwareCacheInterface::class, CacheInjector::class);
         }
 
-        // FIXME: Временные объявления, пока не примут:
+        // FIXME: temporary declarations until this PR is not merged:
         // https://github.com/spiral/framework/pull/444
         $pool = $config->getDefaultPool();
         $container->bindSingleton(CacheItemPoolInterface::class, $pool);

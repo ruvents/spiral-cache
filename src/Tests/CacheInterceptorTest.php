@@ -129,7 +129,7 @@ class CacheInterceptorTest extends TestCase
         );
         $this->assertSame('ok', $item->get());
 
-        // Генерация ключа из параметра прерывателя.
+        // Key generation from interceptor parameter.
         $this->assertSame(
             'ok2',
             $core->callAction(TestController::class, 'cachedWithCallableArrayKey', ['response' => 'ok2', 'echo' => 'foobar'])
@@ -178,7 +178,7 @@ class CacheInterceptorTest extends TestCase
     {
         $core = $this->getCore();
 
-        // Условие не проходит, поэтоу не кэшируем ответ.
+        // Condition is false so response is not cached.
         $pass = false;
         $this->assertSame(
             'ok',
@@ -189,7 +189,7 @@ class CacheInterceptorTest extends TestCase
             $core->callAction(TestController::class, 'cachedWithCondition', ['response' => 'something new', 'pass' => $pass])
         );
 
-        // Условие проходит, поэтоу кэшируем ответ.
+        // Condition is true so response is cached.
         $pass = true;
         $this->assertSame(
             'ok',
@@ -205,7 +205,7 @@ class CacheInterceptorTest extends TestCase
     {
         $core = $this->getCore();
 
-        // Оба условия не срабатывают, поэтому ответ не кэшируется.
+        // Both condition are false so response is not cached.
         $pass = false;
         $this->assertSame(
             'ok',
@@ -216,7 +216,7 @@ class CacheInterceptorTest extends TestCase
             $core->callAction(TestController::class, 'cachedWithSeveralConditions', ['response' => 'something new', 'pass' => $pass])
         );
 
-        // Срабатывает второе условие, поэтому ответ кэшируется.
+        // Second condition is true so response is cached.
         $pass = true;
         $this->assertSame(
             'ok',

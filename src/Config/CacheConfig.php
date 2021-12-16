@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Ruvents\SpiralCache\Config;
 
+use Psr\Cache\CacheItemPoolInterface;
 use Ruvents\SpiralCache\Exception\NoDefaultPoolException;
 use Ruvents\SpiralCache\Exception\PoolDoesNotExistException;
-use Psr\Cache\CacheItemPoolInterface;
 use Spiral\Core\InjectableConfig;
 use Webmozart\Assert\Assert;
 

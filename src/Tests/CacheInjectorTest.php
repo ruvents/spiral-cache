@@ -4,17 +4,15 @@ declare(strict_types=1);
 
 namespace Ruvents\SpiralCache\Tests;
 
+use Psr\Cache\CacheItemPoolInterface;
+use Psr\SimpleCache\CacheInterface;
 use Ruvents\SpiralCache\Bootloader\CacheBootloader;
 use Ruvents\SpiralCache\Config\CacheConfig;
 use Ruvents\SpiralCache\Container\CacheInjector;
 use Ruvents\SpiralCache\Exception\PoolDoesNotExistException;
 use Ruvents\SpiralCache\Exception\PoolDoesNotSupportThisInjectionException;
-use PHPUnit\Framework\TestCase;
-use Psr\Cache\CacheItemPoolInterface;
-use Psr\SimpleCache\CacheInterface;
-use Spiral\Boot\BootloadManager;
 use Spiral\Boot\Bootloader\CoreBootloader;
-use Spiral\Core\Container;
+use Spiral\Boot\BootloadManager;
 use Symfony\Component\Cache\Adapter\ArrayAdapter;
 use Symfony\Component\Cache\Adapter\NullAdapter;
 use Symfony\Component\Cache\Psr16Cache;

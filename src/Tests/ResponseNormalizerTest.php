@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Ruvents\SpiralCache\Tests;
 
-use Ruvents\SpiralCache\Response\CachedResponse;
-use Ruvents\SpiralCache\Response\ResponseNormalizer;
 use Nyholm\Psr7\Factory\Psr17Factory;
 use Nyholm\Psr7\Response;
 use PHPUnit\Framework\TestCase;
+use Ruvents\SpiralCache\Response\CachedResponse;
+use Ruvents\SpiralCache\Response\ResponseNormalizer;
 
 /**
  * @internal

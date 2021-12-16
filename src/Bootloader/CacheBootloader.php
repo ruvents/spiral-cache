@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Ruvents\SpiralCache\Bootloader;
 
+use Psr\Cache\CacheItemPoolInterface;
+use Psr\SimpleCache\CacheInterface;
 use Ruvents\SpiralCache\Config\CacheConfig;
 use Ruvents\SpiralCache\Console\CacheResetCommand;
 use Ruvents\SpiralCache\Container\CacheInjector;
 use Ruvents\SpiralCache\Domain\CacheInterceptor;
-use Psr\Cache\CacheItemPoolInterface;
-use Psr\SimpleCache\CacheInterface;
 use Spiral\Boot\Bootloader\Bootloader;
 use Spiral\Bootloader\ConsoleBootloader;
 use Spiral\Core\Container;

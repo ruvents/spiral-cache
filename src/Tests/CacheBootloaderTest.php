@@ -8,8 +8,8 @@ use Psr\Cache\CacheItemPoolInterface;
 use Psr\SimpleCache\CacheInterface;
 use Ruvents\SpiralCache\Bootloader\CacheBootloader;
 use Ruvents\SpiralCache\Config\CacheConfig;
-use Spiral\Boot\BootloadManager;
 use Spiral\Boot\Bootloader\CoreBootloader;
+use Spiral\Boot\BootloadManager;
 use Symfony\Component\Cache\Adapter\NullAdapter;
 
 /**

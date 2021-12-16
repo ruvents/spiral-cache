@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Ruvents\SpiralCache\Annotation;
 
-use Ruvents\SpiralCache\KeyGenerator;
 use Attribute;
+use Ruvents\SpiralCache\KeyGenerator;
 use Spiral\Attributes\NamedArgumentConstructor;
 
 #[Attribute(Attribute::TARGET_METHOD)]

@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Ruvents\SpiralCache\Console;
 
-use Ruvents\SpiralCache\Config\CacheConfig;
 use Psr\Cache\CacheItemPoolInterface;
+use Ruvents\SpiralCache\Config\CacheConfig;
 use Spiral\Console\Command;
 
 final class CacheResetCommand extends Command

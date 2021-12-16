@@ -4,20 +4,18 @@ declare(strict_types=1);
 
 namespace Ruvents\SpiralCache\Tests;
 
+use Nyholm\Psr7\Factory\Psr17Factory;
+use Psr\Cache\CacheItemPoolInterface;
+use Psr\Http\Message\ServerRequestInterface;
 use Ruvents\SpiralCache\Bootloader\CacheBootloader;
 use Ruvents\SpiralCache\Config\CacheConfig;
 use Ruvents\SpiralCache\Domain\CacheInterceptor;
 use Ruvents\SpiralCache\Response\ResponseNormalizer;
 use Ruvents\SpiralCache\Tests\Fixtures\TestController;
-use Nyholm\Psr7\Factory\Psr17Factory;
-use PHPUnit\Framework\TestCase;
-use Psr\Cache\CacheItemPoolInterface;
-use Psr\Http\Message\ServerRequestInterface;
 use Spiral\Attributes\AttributeReader;
 use Spiral\Attributes\ReaderInterface;
-use Spiral\Boot\BootloadManager;
 use Spiral\Boot\Bootloader\CoreBootloader;
-use Spiral\Core\Container;
+use Spiral\Boot\BootloadManager;
 use Spiral\Core\Core;
 use Spiral\Core\CoreInterface;
 use Spiral\Core\InterceptableCore;

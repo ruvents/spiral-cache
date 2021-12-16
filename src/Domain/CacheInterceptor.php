@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Ruvents\SpiralCache\Domain;
 
-use Ruvents\SpiralCache\Annotation\Cached;
-use Ruvents\SpiralCache\Response\CachedResponse;
-use Ruvents\SpiralCache\Response\ResponseNormalizer;
 use Psr\Cache\CacheItemPoolInterface;
 use Psr\Container\ContainerInterface;
 use Psr\Http\Message\ResponseInterface;
+use Ruvents\SpiralCache\Annotation\Cached;
+use Ruvents\SpiralCache\Response\CachedResponse;
+use Ruvents\SpiralCache\Response\ResponseNormalizer;
 use Spiral\Attributes\ReaderInterface;
 use Spiral\Core\CoreInterceptorInterface;
 use Spiral\Core\CoreInterface;

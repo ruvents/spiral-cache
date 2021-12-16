@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Ruvents\SpiralCache\Container;
 
-use Ruvents\SpiralCache\Config\CacheConfig;
-use Ruvents\SpiralCache\Exception\PoolDoesNotSupportThisInjectionException;
 use Psr\Cache\CacheItemPoolInterface;
 use Psr\SimpleCache\CacheInterface;
+use Ruvents\SpiralCache\Config\CacheConfig;
+use Ruvents\SpiralCache\Exception\PoolDoesNotSupportThisInjectionException;
 use Spiral\Core\Container\InjectorInterface;
 use Symfony\Component\Cache\Psr16Cache;
 

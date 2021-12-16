@@ -6,7 +6,8 @@
     "minimum-stability": "dev",
     "autoload": {
         "psr-4": {
-            "Ruvents\\SpiralCache\\": "src/"
+            "Ruvents\\SpiralCache\\": "src/",
+            "Ruvents\\SpiralCache\\Tests\\": "tests/"
         }
     },
     "require": {

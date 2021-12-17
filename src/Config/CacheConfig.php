@@ -34,13 +34,13 @@ final class CacheConfig extends InjectableConfig
         }
 
         $config['default'] = $config['default'] ?? self::DEFAULT_POOL;
-        $config['controllerAdapter'] = $config['controllerAdapter'] ?? $config['default'];
+        $config['controllerPool'] = $config['controllerPool'] ?? $config[self::DEFAULT_POOL];
 
         parent::__construct($config);
         [
             'default' => $this->defaultPool,
             'pools' => $this->pools,
-            'controllerAdapter' => $this->controllerAdapter,
+            'controllerPool' => $this->controllerPool,
         ] = $config;
     }
 
@@ -75,6 +75,6 @@ final class CacheConfig extends InjectableConfig
 
     public function getControllerPool(): CacheItemPoolInterface
     {
-        return $this->getPool($this->controllerAdapter);
+        return $this->getPool($this->controllerPool);
     }
 }

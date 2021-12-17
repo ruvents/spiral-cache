@@ -37,12 +37,11 @@ final class CacheBootloader extends Bootloader
         if (interface_exists(SymfonyCacheInterface::class)) {
             $container->bindInjector(SymfonyCacheInterface::class, CacheInjector::class);
         }
-
         if (interface_exists(TagAwareCacheInterface::class)) {
             $container->bindInjector(TagAwareCacheInterface::class, CacheInjector::class);
         }
 
-        // FIXME: temporary declarations until this PR is not merged:
+        // FIXME: temporary declarations until this PR is merged:
         // https://github.com/spiral/framework/pull/444
         $pool = $config->getDefaultPool();
         $container->bindSingleton(CacheItemPoolInterface::class, $pool);

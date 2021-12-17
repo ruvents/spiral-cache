@@ -87,7 +87,7 @@ final class CacheConfigTest extends TestCase
                 'default' => new NullAdapter(),
                 'secondary' => new ArrayAdapter(),
             ],
-            'controllerAdapter' => 'secondary',
+            'controllerPool' => 'secondary',
         ]);
 
         $this->assertInstanceOf(ArrayAdapter::class, $config->getControllerPool());

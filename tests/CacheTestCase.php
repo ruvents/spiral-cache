@@ -18,6 +18,8 @@ abstract class CacheTestCase extends TestCase
     protected function setUp(): void
     {
         $this->container = new Container();
+
+        // Needed for ConsoleBootloader injection in CacheBootloader.
         foreach ([
             DirectoriesInterface::class, KernelInterface::class,
             EnvironmentInterface::class, FinalizerInterface::class,

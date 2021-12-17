@@ -20,7 +20,7 @@ use Symfony\Contracts\Cache\TagAwareCacheInterface;
 
 /**
  * @internal
- * @covers \Ruvents\SpiralCache\Container\CacheInjector
+ * @covers \Ruvents\SpiralCache\CacheInjector
  */
 final class CacheInjectorTest extends CacheTestCase
 {

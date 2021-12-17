@@ -25,7 +25,7 @@ use Symfony\Contracts\Cache\TagAwareCacheInterface;
 
 /**
  * @internal
- * @covers \Ruvents\SpiralCache\Domain\CacheInterceptor
+ * @covers \Ruvents\SpiralCache\CacheInterceptor
  */
 class CacheInterceptorTest extends CacheTestCase
 {

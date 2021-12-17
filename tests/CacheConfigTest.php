@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Ruvents\SpiralCache\Tests;
 
 use PHPUnit\Framework\TestCase;
-use Ruvents\SpiralCache\Config\CacheConfig;
+use Ruvents\SpiralCache\CacheConfig;
 use Ruvents\SpiralCache\Exception\NoDefaultPoolException;
 use Ruvents\SpiralCache\Exception\PoolDoesNotExistException;
 use Symfony\Component\Cache\Adapter\ArrayAdapter;

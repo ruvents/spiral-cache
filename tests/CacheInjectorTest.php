@@ -6,9 +6,9 @@ namespace Ruvents\SpiralCache\Tests;
 
 use Psr\Cache\CacheItemPoolInterface;
 use Psr\SimpleCache\CacheInterface;
-use Ruvents\SpiralCache\Bootloader\CacheBootloader;
-use Ruvents\SpiralCache\Config\CacheConfig;
-use Ruvents\SpiralCache\Container\CacheInjector;
+use Ruvents\SpiralCache\CacheBootloader;
+use Ruvents\SpiralCache\CacheConfig;
+use Ruvents\SpiralCache\CacheInjector;
 use Ruvents\SpiralCache\Exception\PoolDoesNotExistException;
 use Ruvents\SpiralCache\Exception\PoolDoesNotSupportThisInjectionException;
 use Spiral\Boot\Bootloader\CoreBootloader;

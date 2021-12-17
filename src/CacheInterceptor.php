@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Ruvents\SpiralCache\Domain;
+namespace Ruvents\SpiralCache;
 
 use Psr\Cache\CacheItemPoolInterface;
 use Psr\Container\ContainerInterface;

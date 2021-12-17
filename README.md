@@ -21,7 +21,8 @@ Then add `CacheBootloader` to your `App.php`:
 ```php
 use Ruvents\SpiralCache\CacheBootloader;
 
-class App extends Kernel {
+class App extends Kernel
+{
     protected const LOAD = [
         ...
         CacheBootloader::class,
@@ -46,8 +47,9 @@ return [
     // Optional, default value is 'default'. Item with specified key must be
     // present in 'pools' array.
     'default' => 'localCache',
-     // Optional, will use default cache pool if omitted.
-    'controllerPool' => *instantiated CacheItemPoolInterface object*,
+    // Optional, will use default cache pool if omitted. Item with specified key
+    // must be present in 'pools' array.
+    'controllerPool' => 'localCache',
 ];
 ```
 
@@ -67,7 +69,8 @@ use Psr\Cache\CacheItemPoolInterface;
 /**
  * @Route('/list', methods="GET")
  */
-public function list(CacheItemPoolInterface $localCache): ResponseInterface {
+public function list(CacheItemPoolInterface $localCache): ResponseInterface
+{
     if ($localCache->hasItem('list')) {
         return $localCache->getItem('list')->get();
     }
@@ -90,7 +93,8 @@ use Psr\SimpleCache\CacheInterface;
 /**
  * @Route('/list', methods="GET")
  */
-public function list(CacheInterface $localCache): ResponseInterface {
+public function list(CacheInterface $localCache): ResponseInterface
+{
     if ($localCache->has('list')) {
         return $localCache->get('list');
     }
@@ -112,7 +116,8 @@ use Symfony\Contracts\Cache\ItemInterface;
 /**
  * @Route('/list', methods="GET")
  */
-public function list(CacheInterface $localCache): ResponseInterface {
+public function list(CacheInterface $localCache): ResponseInterface
+{
     return $localCache->get('list', static function (ItemInterface $item) {
         $item->expiresAfter(3600);
         $response = ...;
@@ -131,7 +136,8 @@ use Symfony\Contracts\Cache\ItemInterface;
 /**
  * @Route('/list', methods="GET")
  */
-public function list(TagAwareCacheInterface $localCache): ResponseInterface {
+public function list(TagAwareCacheInterface $localCache): ResponseInterface
+{
     if ($localCache->hasItem('list')) {
         return $localCache->getItem('list')->get();
     }
@@ -163,7 +169,8 @@ use Ruvents\SpiralCache\Annotation\Cached;
  * @Route('/list', methods="GET")
  */
 #[Cached('+4 hours')]
-public function list(): ResponseInterface {
+public function list(): ResponseInterface
+{
     $response = ...;
     return $response;
 }
@@ -180,12 +187,14 @@ use Ruvents\SpiralCache\Annotation\Cached;
  * @Route('/list', methods="GET")
  */
 #[Cached('+4 hours', key: [self::class, 'keyGenerator'])]
-public function list(): ResponseInterface {
+public function list(): ResponseInterface
+{
     $response = ...;
     return $response;
 }
 
-public static function keyGenerator(array $context): string {
+public static function keyGenerator(array $context): string
+{
     $key = ...; // any logic here
     return $key;
 }
@@ -197,12 +206,14 @@ If you want to apply caching conditionally specify callable array in `if` key:
 use Ruvents\SpiralCache\Annotation\Cached;
 
 #[Cached('+4 hours', if: [self::class, 'cacheCondition'])]
-public function list(): ResponseInterface {
+public function list(): ResponseInterface
+{
     $response = ...;
     return $response;
 }
 
-public static function cacheCondition(array $context): string {
+public static function cacheCondition(array $context): string
+{
     $key = ...; // any logic here
     return $key;
 }
@@ -216,14 +227,16 @@ If `symfony/cache` is installed and `TagAwareCacheInterface` is used as
 use Ruvents\SpiralCache\Annotation\Cached;
 
 #[Cached('+4 hours', tags: ['api.list'])]
-public function list(): ResponseInterface {
+public function list(): ResponseInterface
+{
     $response = ...;
     return $response;
 }
 
 ... somewhere else in code ...
 
-public function clearCache(TagAwareCacheInterface $localCache): string {
+public function clearCache(TagAwareCacheInterface $localCache): string
+{
     $localCache->invalidateTags(['api.list']);
 }
 ```

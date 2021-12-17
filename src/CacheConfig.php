@@ -34,7 +34,7 @@ final class CacheConfig extends InjectableConfig
         }
 
         $config['default'] = $config['default'] ?? self::DEFAULT_POOL;
-        $config['controllerPool'] = $config['controllerPool'] ?? $config[self::DEFAULT_POOL];
+        $config['controllerPool'] = $config['controllerPool'] ?? $config['default'];
 
         parent::__construct($config);
         [
